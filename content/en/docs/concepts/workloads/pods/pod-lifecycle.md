@@ -39,9 +39,6 @@ Value | Description
 `Succeeded` | All Containers in the Pod have terminated in success, and will not be restarted.
 `Failed` | All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.
 `Unknown` | For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
-`Completed` | The pod has run to completion as there's nothing to keep it running eg. Completed Jobs.
-`CrashLoopBackOff` | This means that one of the containers in the pod has exited unexpectedly, and perhaps with a non-zero error code even after restarting due to [restart policy](#restart-policy).
-
 
 ## Pod conditions
 
@@ -71,7 +68,7 @@ array has six possible fields:
   * `Initialized`: all [init containers](/docs/concepts/workloads/pods/init-containers)
     have started successfully;
   * `Unschedulable`: the scheduler cannot schedule the Pod right now, for example
-    due to lacking of resources or other constraints;
+    due to lack of resources or other constraints;
   * `ContainersReady`: all containers in the Pod are ready.
 
 
@@ -104,7 +101,7 @@ Each probe has one of three results:
 * Failure: The Container failed the diagnostic.
 * Unknown: The diagnostic failed, so no action should be taken.
 
-The kubelet can optionally perform and react to two kinds of probes on running
+The kubelet can optionally perform and react to three kinds of probes on running
 Containers:
 
 * `livenessProbe`: Indicates whether the Container is running. If
@@ -118,7 +115,15 @@ Containers:
    state of readiness before the initial delay is `Failure`. If a Container does
    not provide a readiness probe, the default state is `Success`.
 
-### When should you use liveness or readiness probes?
+* `startupProbe`: Indicates whether the application within the Container is started.
+   All other probes are disabled if a startup probe is provided, until it succeeds.
+   If the startup probe fails, the kubelet kills the Container, and the Container
+   is subjected to its [restart policy](#restart-policy). If a Container does not
+   provide a startup probe, the default state is `Success`.
+
+### When should you use a liveness probe?
+
+{{< feature-state for_k8s_version="v1.0" state="stable" >}}
 
 If the process in your Container is able to crash on its own whenever it
 encounters an issue or becomes unhealthy, you do not necessarily need a liveness
@@ -127,6 +132,10 @@ with the Pod's `restartPolicy`.
 
 If you'd like your Container to be killed and restarted if a probe fails, then
 specify a liveness probe, and specify a `restartPolicy` of Always or OnFailure.
+
+### When should you use a readiness probe?
+
+{{< feature-state for_k8s_version="v1.0" state="stable" >}}
 
 If you'd like to start sending traffic to a Pod only when a probe succeeds,
 specify a readiness probe. In this case, the readiness probe might be the same
@@ -145,8 +154,15 @@ puts itself into an unready state regardless of whether the readiness probe exis
 The Pod remains in the unready state while it waits for the Containers in the Pod
 to stop.
 
-For more information about how to set up a liveness or readiness probe, see
-[Configure Liveness and Readiness Probes](/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
+### When should you use a startup probe?
+
+{{< feature-state for_k8s_version="v1.16" state="alpha" >}}
+
+If your Container usually starts in more than `initialDelaySeconds + failureThreshold × periodSeconds`, you should specify a startup probe that checks the same endpoint as the liveness probe. The default for `periodSeconds` is 30s.
+You should then set its `failureThreshold` high enough to allow the Container to start, without changing the default values of the liveness probe. This helps to protect against deadlocks.
+
+For more information about how to set up a liveness, readiness, startup probe, see
+[Configure Liveness, Readiness and Startup Probes](/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
 ## Pod and Container status
 
@@ -179,7 +195,7 @@ Once Pod is assigned to a node by scheduler, kubelet starts creating containers 
    ...
    ```   
        
-* `Terminated`:  Indicates that the container completed its execution and has stopped running.A container enters into this when it has successfully completed execution or when it has failed for some reason. Regardless, a reason and exit code is displayed, as well as the container's start and finish time. Before a container enters into Terminated, `preStop` hook (if any) is executed.
+* `Terminated`:  Indicates that the container completed its execution and has stopped running. A container enters into this when it has successfully completed execution or when it has failed for some reason. Regardless, a reason and exit code is displayed, as well as the container's start and finish time. Before a container enters into Terminated, `preStop` hook (if any) is executed.
   
    ```yaml
    ...
@@ -196,7 +212,7 @@ Once Pod is assigned to a node by scheduler, kubelet starts creating containers 
 {{< feature-state for_k8s_version="v1.14" state="stable" >}}
 
 In order to add extensibility to Pod readiness by enabling the injection of
-extra feedbacks or signals into `PodStatus`, Kubernetes 1.11 introduced a
+extra feedback or signals into `PodStatus`, Kubernetes 1.11 introduced a
 feature named [Pod ready++](https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/0007-pod-ready%2B%2B.md).
 You can use the new field `ReadinessGate` in the `PodSpec` to specify additional
 conditions to be evaluated for Pod readiness. If Kubernetes cannot find such a
@@ -212,7 +228,7 @@ spec:
 status:
   conditions:
     - type: Ready  # this is a builtin PodCondition
-      status: "True"
+      status: "False"
       lastProbeTime: null
       lastTransitionTime: 2018-01-01T00:00:00Z
     - type: "www.example.com/feature-1"   # an extra PodCondition
@@ -260,10 +276,11 @@ once bound to a node, a Pod will never be rebound to another node.
 
 ## Pod lifetime
 
-In general, Pods do not disappear until someone destroys them. This might be a
-human or a controller. The only exception to
-this rule is that Pods with a `phase` of Succeeded or Failed for more than some
-duration (determined by `terminated-pod-gc-threshold` in the master) will expire and be automatically destroyed.
+In general, Pods remain until a human or controller process explicitly removes them.
+The control plane cleans up terminated Pods (with a phase of `Succeeded` or 
+`Failed`), when the number of Pods exceeds the configured threshold 
+(determined by `terminated-pod-gc-threshold` in the kube-controller-manager).
+This avoids a resource leak as Pods are created and terminated over time.
 
 Three types of controllers are available:
 
@@ -381,7 +398,7 @@ spec:
   [attaching handlers to Container lifecycle events](/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
 
 * Get hands-on experience
-  [configuring liveness and readiness probes](/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
+  [Configure Liveness, Readiness and Startup Probes](/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 
 * Learn more about [Container lifecycle hooks](/docs/concepts/containers/container-lifecycle-hooks/).
 

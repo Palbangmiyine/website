@@ -48,10 +48,10 @@ OUTPUT
 ## Running commands in a Pod
 
 For many steps here you will want to see what a `Pod` running in the cluster
-sees.  The simplest way to do this is to run an interactive busybox `Pod`:
+sees.  The simplest way to do this is to run an interactive alpine `Pod`:
 
 ```none
-kubectl run -it --rm --restart=Never busybox --image=busybox sh
+kubectl run -it --rm --restart=Never alpine --image=alpine sh
 / #
 ```
 {{< note >}}
@@ -219,7 +219,7 @@ own cluster.
 You can also try this from a `Node` in the cluster:
 
 {{< note >}}
-10.0.0.10 is my DNS `Service`, yours might be different).
+10.0.0.10 is my DNS `Service`, yours might be different.
 {{< /note >}}
 
 ```shell
@@ -312,7 +312,6 @@ kubectl get service hostnames -o json
     "metadata": {
         "name": "hostnames",
         "namespace": "default",
-        "selfLink": "/api/v1/namespaces/default/services/hostnames",
         "uid": "428c8b6c-24bc-11e5-936d-42010af0a9bc",
         "resourceVersion": "347189",
         "creationTimestamp": "2015-07-07T15:24:29Z",
@@ -612,7 +611,7 @@ for intf in /sys/devices/virtual/net/cbr0/brif/*; do cat $intf/hairpin_mode; don
 ```
 
 * If the effective hairpin mode is `promiscuous-bridge`, ensure `Kubelet`
-has the permission to manipulate linux bridge on node. If cbr0` bridge is
+has the permission to manipulate linux bridge on node. If `cbr0` bridge is
 used and configured properly, you should see:
 
 ```shell

@@ -1,6 +1,7 @@
 ---
 title: Vue d'ensemble de l'administration d'un cluster
 content_template: templates/concept
+description: Administration cluster Kubernetes
 weight: 10
 ---
 
@@ -12,7 +13,7 @@ Il suppose une certaine familiarité avec les [concepts](/docs/concepts/) de Kub
 {{% capture body %}}
 ## Planifier le déploiement d'un cluster
 
-Voir le guide: [choisir la bonne solution](/docs/setup/pick-right-solution/) pour des exemples de planification, de mise en place et de configuration de clusters Kubernetes. Les solutions répertoriées dans cet article s'appellent des *distributions*.
+Voir le guide: [choisir la bonne solution](/fr/docs/setup/pick-right-solution/) pour des exemples de planification, de mise en place et de configuration de clusters Kubernetes. Les solutions répertoriées dans cet article s'appellent des *distributions*.
 
 Avant de choisir un guide, voici quelques considérations:
 
@@ -62,7 +63,5 @@ A noter: Toutes les distributions ne sont pas activement maintenues. Choisissez 
 
 * [Integration DNS](/docs/concepts/services-networking/dns-pod-service/) décrit comment résoudre un nom DNS directement vers un service Kubernetes.
 
-* [Journalisation et surveillance de l'activité du cluster](/docs/concepts/cluster-administration/logging/) explique le fonctionnement de la connexion à Kubernetes et son implémentation.
+* [Journalisation des évènements et surveillance de l'activité du cluster](/docs/concepts/cluster-administration/logging/) explique le fonctionnement de la journalisation des évènements dans Kubernetes et son implémentation.
 {{% /capture %}}
-
-

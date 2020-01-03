@@ -66,10 +66,8 @@ The following resource types are supported:
 
 | Resource Name | Description |
 | --------------------- | ----------------------------------------------------------- |
-| `cpu` | Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value. |
 | `limits.cpu` | Across all pods in a non-terminal state, the sum of CPU limits cannot exceed this value. |
 | `limits.memory` | Across all pods in a non-terminal state, the sum of memory limits cannot exceed this value. |
-| `memory` | Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value. |
 | `requests.cpu` | Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value. |
 | `requests.memory` | Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value. |
 
@@ -136,6 +134,9 @@ Here is an example set of resources users may want to put under object count quo
 * `count/cronjobs.batch`
 * `count/deployments.extensions`
 
+The 1.15 release added support for custom resources using the same syntax.
+For example, to create a quota on a `widgets` custom resource in the `example.com` API group, use `count/widgets.example.com`.
+
 When using `count/*` resource quota, an object is charged against the quota if it exists in server storage.
 These types of quotas are useful to protect against exhaustion of storage resources.  For example, you may
 want to quota the number of secrets in a server given their large size.  Too many secrets in a cluster can
@@ -200,11 +201,6 @@ You can control a pod's consumption of system resources based on a pod's priorit
 field in the quota spec.
 
 A quota is matched and consumed only if `scopeSelector` in the quota spec selects the pod.
-
-{{< note >}}
-You need to enable the feature gate `ResourceQuotaScopeSelectors`before using resource quotas
-per PriorityClass.
-{{< /note >}}
 
 This example creates a quota object and matches it with pods at specific priorities. The example
 works as follows:
@@ -405,7 +401,6 @@ metadata:
   name: compute-resources
 spec:
   hard:
-    pods: "4"
     requests.cpu: "1"
     requests.memory: 1Gi
     limits.cpu: "2"
@@ -428,6 +423,7 @@ spec:
   hard:
     configmaps: "10"
     persistentvolumeclaims: "4"
+    pods: "4"
     replicationcontrollers: "20"
     secrets: "10"
     services: "10"
@@ -460,7 +456,6 @@ Resource                 Used  Hard
 --------                 ----  ----
 limits.cpu               0     2
 limits.memory            0     2Gi
-pods                     0     4
 requests.cpu             0     1
 requests.memory          0     1Gi
 requests.nvidia.com/gpu  0     4
@@ -477,6 +472,7 @@ Resource                Used    Hard
 --------                ----    ----
 configmaps              0       10
 persistentvolumeclaims  0       4
+pods                    0       4
 replicationcontrollers  0       20
 secrets                 1       10
 services                0       10
@@ -537,16 +533,37 @@ restrictions around nodes: pods from several namespaces may run on the same node
 
 It may be desired that pods at a particular priority, eg. "cluster-services", should be allowed in a namespace, if and only if, a matching quota object exists.
 
-With this mechanism, operators will be able to restrict usage of certain high priority classes to a limited number of namespaces and not every namespaces will be able to consume these priority classes by default.
+With this mechanism, operators will be able to restrict usage of certain high priority classes to a limited number of namespaces and not every namespace will be able to consume these priority classes by default.
 
 To enforce this, kube-apiserver flag `--admission-control-config-file` should be used to pass path to the following configuration file:
 
+{{< tabs name="example1" >}}
+{{% tab name="apiserver.config.k8s.io/v1" %}}
 ```yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+- name: "ResourceQuota"
+  configuration:
+    apiVersion: apiserver.config.k8s.io/v1
+    kind: ResourceQuotaConfiguration
+    limitedResources:
+    - resource: pods
+      matchScopes:
+      - scopeName: PriorityClass 
+        operator: In
+        values: ["cluster-services"]
+```
+{{% /tab %}}
+{{% tab name="apiserver.k8s.io/v1alpha1" %}}
+```yaml
+# Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1
 apiVersion: apiserver.k8s.io/v1alpha1
 kind: AdmissionConfiguration
 plugins:
 - name: "ResourceQuota"
   configuration:
+    # Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1, ResourceQuotaConfiguration
     apiVersion: resourcequota.admission.k8s.io/v1beta1
     kind: Configuration
     limitedResources:
@@ -556,6 +573,8 @@ plugins:
         operator: In
         values: ["cluster-services"]
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 Now, "cluster-services" pods will be allowed in only those namespaces where a quota object with a matching `scopeSelector` is present.
 For example:

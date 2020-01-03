@@ -1,5 +1,6 @@
 ---
 title: Personnalisation de la configuration du control plane avec kubeadm
+description: Personnalisation de la configuration du control plane avec kubeadm
 content_template: templates/concept
 weight: 40
 ---
@@ -8,16 +9,16 @@ weight: 40
 
 {{< feature-state for_k8s_version="1.12" state="stable" >}}
 
-L'objet `ClusterConfiguration` de kubeadm expose le champ `extraArgs` qui peut 
-remplacer les indicateurs par défaut transmis au control plane à des composants 
-tels que l'APIServer, le ControllerManager et le Scheduler. Les composants sont 
+L'objet `ClusterConfiguration` de kubeadm expose le champ `extraArgs` qui peut
+remplacer les indicateurs par défaut transmis au control plane à des composants
+tels que l'APIServer, le ControllerManager et le Scheduler. Les composants sont
 définis à l'aide des champs suivants:
 
 - `apiServer`
 - `controllerManager`
 - `scheduler`
 
-Le champ `extraArgs` se compose de paires` clé: valeur`. Pour remplacer un indicateur 
+Le champ `extraArgs` se compose de paires` clé: valeur`. Pour remplacer un indicateur
 pour un composant du control plane:
 
 1. Ajoutez les champs appropriés à votre configuration.
@@ -30,10 +31,9 @@ Pour plus de détails sur chaque champ de la configuration, vous pouvez accéder
 
 {{% capture body %}}
 
-## Paramètres pour l'API Server 
+## Paramètres pour l'API Server
 
-Pour plus de détails, voir la 
-[documentation de référence pour kube-apiserver](/docs/reference/command-line-tools-reference/kube-apiserver/).
+Pour plus de détails, voir la  [documentation de référence pour kube-apiserver](/docs/reference/command-line-tools-reference/kube-apiserver/).
 
 Exemple d'utilisation:
 ```yaml
@@ -70,8 +70,7 @@ controllerManager:
 
 ## Paramètres pour le Scheduler
 
-Pour plus de détails, voir la 
-[documentation de référence pour kube-scheduler](/docs/reference/command-line-tools-reference/kube-scheduler/).
+Pour plus de détails, voir la [documentation de référence pour kube-scheduler](/docs/reference/command-line-tools-reference/kube-scheduler/).
 
 Example usage:
 ```yaml

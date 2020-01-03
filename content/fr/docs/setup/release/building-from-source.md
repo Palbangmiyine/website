@@ -1,13 +1,14 @@
 ---
 title: Construire une release
 content_template: templates/concept
+description: Construire une release de la documentation Kubernetes
 card:
   name: download
   weight: 20
   title: Construire une release
 ---
 {{% capture overview %}}
-Vous pouvez soit compiler une version à partir des sources, soit télécharger une version pré-compilée.  Si vous ne 
+Vous pouvez soit compiler une version à partir des sources, soit télécharger une version pré-compilée.  Si vous ne
 prévoyez pas de développer Kubernetes nous vous suggérons d'utiliser une version pré-compilée de la version actuelle,
  que l'on peut trouver dans le répertoire [Release Notes](/docs/setup/release/notes/).
 

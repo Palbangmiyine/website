@@ -1,8 +1,9 @@
 ---
 title: Aperçu du Pod
+description: Pod Concept Kubernetes
 content_template: templates/concept
 weight: 10
-card: 
+card:
   name: concepts
   weight: 60
 ---
@@ -11,8 +12,8 @@ card:
 Cette page fournit un aperçu du `Pod`, l'objet déployable le plus petit dans le modèle d'objets Kubernetes.
 {{% /capture %}}
 
-
 {{% capture body %}}
+
 ## Comprendre les Pods
 
 Un *Pod* est le bloc de construction de base de Kubernetes--l'unité la plus petite et la plus simple dans le modèle d'objets de Kubernetes--que vous créez ou déployez. Un Pod représente un process en cours d'exécution dans votre cluster.
@@ -75,7 +76,7 @@ En général, les Controllers utilisent des Templates de Pod que vous lui fourni
 
 ## Templates de Pod
 
-Les Templates de Pod sont des spécifications de pod qui sont inclus dans d'autres objets, comme les 
+Les Templates de Pod sont des spécifications de pod qui sont inclus dans d'autres objets, comme les
 [Replication Controllers](/docs/concepts/workloads/controllers/replicationcontroller/), [Jobs](/docs/concepts/jobs/run-to-completion-finite-workloads/), et
 [DaemonSets](/docs/concepts/workloads/controllers/daemonset/).  Les Controllers utilisent les Templates de Pod pour créer réellement les pods.
 L'exemple ci-dessous est un manifeste simple pour un Pod d'un conteneur affichant un message.
@@ -100,5 +101,5 @@ Plutôt que de spécifier tous les états désirés courants de tous les réplic
 {{% capture whatsnext %}}
 * En savoir plus sur le comportement des Pods :
   * [Terminaison d'un Pod](/docs/concepts/workloads/pods/pod/#termination-of-pods)
-  * [Cycle de vie d'un Pod](../pod-lifecycle)
+  * [Cycle de vie d'un Pod](/docs/concepts/workloads/pods/pod-lifecycle/)
 {{% /capture %}}

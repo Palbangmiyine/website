@@ -1,6 +1,4 @@
 
-Create bootstrap tokens on the server.
-
 ### Synopsis
 
 

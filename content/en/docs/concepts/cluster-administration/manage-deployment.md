@@ -1,8 +1,6 @@
 ---
 reviewers:
-- bgrant0607
 - janetkuo
-- mikedanese
 title: Managing Resources
 content_template: templates/concept
 weight: 40
@@ -108,7 +106,7 @@ With the above commands, we first create resources under `examples/application/n
 
 If you happen to organize your resources across several subdirectories within a particular directory, you can recursively perform the operations on the subdirectories also, by specifying `--recursive` or `-R` alongside the `--filename,-f` flag.
 
-For instance, assume there is a directory `project/k8s/development` that holds all of the manifests needed for the development environment, organized by resource type:
+For instance, assume there is a directory `project/k8s/development` that holds all of the {{< glossary_tooltip text="manifests" term_id="manifest" >}} needed for the development environment, organized by resource type:
 
 ```
 project/k8s/development
@@ -307,7 +305,7 @@ kubectl annotate pods my-nginx-v4-9gw19 description='my frontend running nginx'
 kubectl get pods my-nginx-v4-9gw19 -o yaml
 ```
 ```shell
-apiversion: v1
+apiVersion: v1
 kind: pod
 metadata:
   annotations:
@@ -366,7 +364,6 @@ This command will compare the version of the configuration that you're pushing w
 
 ```shell
 kubectl apply -f https://k8s.io/examples/application/nginx/nginx-deployment.yaml
-```shell
 deployment.apps/my-nginx configured
 ```
 

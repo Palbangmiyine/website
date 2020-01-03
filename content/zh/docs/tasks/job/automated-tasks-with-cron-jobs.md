@@ -1,3 +1,12 @@
+---
+reviewers:
+- chenopis
+
+title: 使用 CronJob 运行自动化任务
+content_template: templates/task
+weight: 10
+---
+
 <!--
 ---
 title: Running Automated Tasks with a CronJob
@@ -7,15 +16,6 @@ content_template: templates/task
 weight: 10
 ---
 -->
-
----
-reviewers:
-- chenopis
-
-title: 使用 CronJob 运行自动化任务
-content_template: templates/task
-weight: 10
----
 
 {{% capture overview %}}
 
@@ -200,18 +200,18 @@ As with all other Kubernetes configs, a cron job needs `apiVersion`, `kind`, and
 information about working with config files, see [deploying applications](/docs/user-guide/deploying-applications),
 and [using kubectl to manage resources](/docs/user-guide/working-with-resources) documents.
 
-A cron job config also needs a [`.spec` section](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status).
+A cron job config also needs a [`.spec` section](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status).
 -->
 
 ## 编写 CronJob 声明信息
 
 像 Kubernetes 的其他配置一样，CronJob 需要 `apiVersion`、 `kind`、 和 `metadata` 域。配置文件的一般信息，请参考 [部署应用](/docs/user-guide/deploying-applications) 和 [使用 kubectl 管理资源](/docs/user-guide/working-with-resources).
 
-CronJob 配置也需要包括[`.spec`](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status).
+CronJob 配置也需要包括[`.spec`](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status).
 
-{{< note >}} 
+{{< note >}}
 <!--
-All modifications to a cron job, especially its `.spec`, are applied only to the following runs. 
+All modifications to a cron job, especially its `.spec`, are applied only to the following runs.
 -->
 对 CronJob 的所有改动，特别是它的 `.spec`，只会影响将来的运行实例。
 {{< /note >}}
@@ -291,7 +291,7 @@ That means 120 schedules were missed, so the cron job is no longer scheduled. If
 field is set (not null), the CronJob controller counts how many missed jobs occurred from the value of
 `.spec.startingDeadlineSeconds` until now. For example, if it is set to `200`, it counts how many missed
 schedules occurred in the last 200 seconds. In that case, if there were more than 100 missed schedules in the
-last 200 seconds, the cron job is no longer scheduled. 
+last 200 seconds, the cron job is no longer scheduled.
 -->
 
 CronJob 控制器会统计错过了多少次调度。如果错过了100次以上的调度，CronJob 就不再调度了。当没有设置 `.spec.startingDeadlineSeconds` 时，CronJob 控制器统计从`status.lastScheduleTime`到当前的调度错过次数。

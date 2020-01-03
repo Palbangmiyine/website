@@ -11,36 +11,63 @@ content_template: templates/concept
 
 {{% capture body %}}
 
-* [Certified Kubernetes Administrator 준비 과정 (LinuxAcademy.com)](https://linuxacademy.com/linux/training/course/name/certified-kubernetes-administrator-preparation-course)
+* [AIOps Essentials (Autoscaling Kubernetes with Prometheus Metrics) with Hands-On Labs (Linux Academy)](https://linuxacademy.com/devops/training/course/name/using-machine-learning-to-scale-kubernetes-clusters)
 
-* [Certified Kubernetes Application Developer 준비 과정 및 모의 시험 (KodeKloud.com)](https://kodekloud.com/p/kubernetes-certification-course)
+* [Amazon EKS Deep Dive with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/amazon-web-services/training/course/name/amazon-eks-deep-dive)
 
-* [Google Kubernetes Engine 시작하기 (Coursera)](https://www.coursera.org/learn/google-kubernetes-engine)
+* [Cloud Native Certified Kubernetes Administrator (CKA) with Hands-On Labs & Practice Exams (Linux Academy)](https://linuxacademy.com/linux/training/course/name/cloud-native-certified-kubernetes-administrator-cka)
 
-* [Google Kubernetes Engine Deep Dive (Linux Academy)](https://linuxacademy.com/google-cloud-platform/training/course/name/google-kubernetes-engine-deep-dive)
+* [Certified Kubernetes Administrator (CKA) Preparation Course (CloudYuga)](https://cloudyuga.guru/courses/cka-online-self-paced)
 
-* [쿠버네티스 시작하기 (Pluralsight)](https://www.pluralsight.com/courses/getting-started-kubernetes)
+* [Certified Kubernetes Administrator Preparation Course with Practice Tests (KodeKloud)](https://kodekloud.com/p/certified-kubernetes-administrator-with-practice-tests)
 
-* [쿠버네티스 소개 및 실습 (Instruqt)](https://play.instruqt.com/public/topics/getting-started-with-kubernetes)
+* [Certified Kubernetes Application Developer (CKAD) with Hands-On Labs & Practice Exams (Linux Academy)] (https://linuxacademy.com/containers/training/course/name/certified-kubernetes-application-developer-ckad/)
 
-* [IBM 클라우드: 쿠버네티스로 마이크로서비스(Microservices) 배포 (Coursera)](https://www.coursera.org/learn/deploy-micro-kube-ibm-cloud)
+* [Certified Kubernetes Application Developer (CKAD) Preparation Course (CloudYuga)](https://cloudyuga.guru/courses/ckad-online-self-paced)
 
-* [쿠버네티스 소개 (edX)](https://www.edx.org/course/introduction-kubernetes-linuxfoundationx-lfs158x)
+* [Certified Kubernetes Application Developer Preparation Course with Practice Tests (KodeKloud)](https://kodekloud.com/p/kubernetes-certification-course)
 
-* [Kubernetes Essentials (Linux Academy)](https://linuxacademy.com/linux/training/course/name/kubernetes-essentials)
+* [Getting Started with Google Kubernetes Engine (Coursera)](https://www.coursera.org/learn/google-kubernetes-engine)
 
-* [초보자를 위한 쿠버네티스 실습 랩 (KodeKloud.com)](https://kodekloud.com/p/kubernetes-for-the-absolute-beginners-hands-on)
+* [Getting Started with Kubernetes (Pluralsight)](https://www.pluralsight.com/courses/getting-started-kubernetes)
 
-* [Kubernetes Quick Start (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-quick-start)
+* [Getting Started with Kubernetes Clusters on OCI Oracle Kubernetes Engine (OKE) (Learning Library)](https://apexapps.oracle.com/pls/apex/f?p=44785:50:0:::50:P50_EVENT_ID,P50_COURSE_ID:5935,256)
 
-* [쿠버네티스 심화 학습 (LinuxAcademy.com)](https://linuxacademy.com/linux/training/course/name/kubernetes-the-hard-way)
+* [Google Kubernetes Engine Deep Dive (Linux Academy)] (https://linuxacademy.com/google-cloud-platform/training/course/name/google-kubernetes-engine-deep-dive)
 
-* [대화식 실습 시나리오를 사용하여 쿠버네티스 배우기 (Katacoda)](https://www.katacoda.com/courses/kubernetes/)
+* [Helm Deep Dive with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/helm-deep-dive-part-1)
 
-* [Monitoring Kubernetes With Prometheus (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-and-prometheus)
+* [Hands-on Introduction to Kubernetes (Instruqt)](https://play.instruqt.com/public/topics/getting-started-with-kubernetes)
 
-* [쿠버네티스와 확장 가능한 마이크로서비스(Microservices) (Udacity)](https://www.udacity.com/course/scalable-microservices-with-kubernetes--ud615)
+* [IBM Cloud: Deploying Microservices with Kubernetes (Coursera)](https://www.coursera.org/learn/deploy-micro-kube-ibm-cloud)
+
+* [Introduction to Kubernetes (edX)](https://www.edx.org/course/introduction-kubernetes-linuxfoundationx-lfs158x)
+
+* [Kubernetes Essentials with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-essentials)
+
+* [Kubernetes for the Absolute Beginners with Hands-on Labs (KodeKloud)](https://kodekloud.com/p/kubernetes-for-the-absolute-beginners-hands-on)
+
+* [Kubernetes Fundamentals (LFS258) (The Linux Foundation)](https://training.linuxfoundation.org/training/kubernetes-fundamentals/)
+
+* [Kubernetes Quick Start with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-quick-start)
+
+* [Kubernetes the Hard Way with Hands-On Labs (Linux Academy)](https://linuxacademy.com/linux/training/course/name/kubernetes-the-hard-way)
+
+* [Kubernetes Security with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-security)
+
+* [Launch Your First OpenShift Operator with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/containers/training/course/name/red-hat-open-shift)
+
+* [Learn Kubernetes by Doing - 100% Hands-On Experience (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/learn-kubernetes-by-doing)
+
+* [Learn Kubernetes using Interactive Hands-on Scenarios (Katacoda)](https://www.katacoda.com/courses/kubernetes/)
+
+* [Microservice Applications in Kubernetes - 100% Hands-On Experience (Linux Academy)] (https://linuxacademy.com/devops/training/course/name/learn-microservices-by-doing)
+
+* [Monitoring Kubernetes With Prometheus with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/kubernetes-and-prometheus)
+
+* [Service Mesh with Istio with Hands-On Labs (Linux Academy)] (https://linuxacademy.com/linux/training/course/name/service-mesh-with-istio-part-1)
+
+* [Scalable Microservices with Kubernetes (Udacity)](https://www.udacity.com/course/scalable-microservices-with-kubernetes--ud615)
 
 * [Self-paced Kubernetes online course (Learnk8s Academy)](https://learnk8s.io/academy)
-
 {{% /capture %}}

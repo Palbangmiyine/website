@@ -96,16 +96,16 @@ in the Kubernetes organization. Follow these steps:
       SIG Docs member.
       {{< /note >}}
 
-2.  Open a Github issue in the `kubernetes/org` repository to request membership.
+2.  Open a GitHub issue in the `kubernetes/org` repository to request membership.
     Fill out the template using the guidelines at
     [Community membership](https://github.com/kubernetes/community/blob/master/community-membership.md).
 
-3.  Let your sponsors know about the Github issue, either by at-mentioning them
-    in the Github issue (adding a comment with `@<Github-username>`) or by sending them the link directly,
+3.  Let your sponsors know about the GitHub issue, either by at-mentioning them
+    in the GitHub issue (adding a comment with `@<GitHub-username>`) or by sending them the link directly,
     so that they can add a `+1` vote.
 
 4.  When your membership is approved, the github admin team member assigned to your request updates the
-    Github issue to show approval and then closes the Github issue.
+    GitHub issue to show approval and then closes the GitHub issue.
     Congratulations, you are now a member!
 
 If for some reason your membership request is not accepted right away, the
@@ -116,7 +116,7 @@ again.
 
 Reviewers are members of the
 [@kubernetes/sig-docs-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-docs-pr-reviews)
-Github group. See [Teams and groups within SIG Docs](#teams-and-groups-within-sig-docs).
+GitHub group. See [Teams and groups within SIG Docs](#teams-and-groups-within-sig-docs).
 
 Reviewers review documentation pull requests and provide feedback on proposed
 changes.
@@ -158,14 +158,14 @@ will assign and suggest you as a reviewer on new pull requests.
 
 If you are approved, request that a current SIG Docs approver add you to the
 [@kubernetes/sig-docs-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-docs-pr-reviews)
-Github group. Only members of the `kubernetes-website-admins` Github group can
-add new members to a Github group.
+GitHub group. Only members of the `kubernetes-website-admins` GitHub group can
+add new members to a GitHub group.
 
 ### Approvers
 
 Approvers are members of the
 [@kubernetes/sig-docs-maintainers](https://github.com/orgs/kubernetes/teams/sig-docs-maintainers)
-Github group. See [Teams and groups within SIG Docs](#teams-and-groups-within-sig-docs).
+GitHub group. See [Teams and groups within SIG Docs](#teams-and-groups-within-sig-docs).
 
 Approvers have the ability to merge a PR, and thus, to publish content on the
 Kubernetes website. To approve a PR, an approver leaves an `/approve` comment on
@@ -198,24 +198,32 @@ will assign and suggest you as a reviewer on new pull requests.
 
 If you are approved, request that a current SIG Docs approver add you to the
 [@kubernetes/sig-docs-maintainers](https://github.com/orgs/kubernetes/teams/sig-docs-maintainers)
-Github group. Only members of the `kubernetes-website-admins` Github group can
-add new members to a Github group.
+GitHub group. Only members of the `kubernetes-website-admins` GitHub group can
+add new members to a GitHub group.
 
-#### Becoming a website admin
+#### Approver responsibilities
 
-Members of the `kubernetes-website-admins` Github group can manage Github group
-membership and have full administrative rights to the settings of the repository,
-including the ability to add, remove, and troubleshoot webhooks. Not all SIG
-Docs approvers need this level of access.
+Approvers improve the documentation by reviewing and merging pull requests into the website repository. Because this role carries additional privileges, approvers have additional responsibilities:
 
-If you think you need this level of access, talk to an existing website admin or
-ask in the #sig-docs channel on [Kubernetes Slack](https://kubernetes.slack.com).
+- Approvers can use the `/approve` command, which merges PRs into the repo.
+
+    A careless merge can break the site, so be sure that when you merge something, you mean it.
+    
+- Make sure that proposed changes meet the contribution guidelines. 
+
+    If you ever have a question, or you're not sure about something, feel free to call for additional review.
+
+- Verify that netlify tests pass before you `/approve` a PR.
+
+    <img src="/images/docs/contribute/netlify-pass.png" width="75%" alt="Netlify tests must pass before approving" />
+
+- Visit the netlify page preview for a PR to make sure things look good before approving.
 
 #### PR Wrangler
 
-SIG Docs approvers are added to the
+SIG Docs approvers participate in the
 [PR Wrangler rotation scheduler](https://github.com/kubernetes/website/wiki/PR-Wranglers)
-for weekly rotations. All SIG Docs approvers are expected to take part in this
+for weekly rotations. SIG Docs expects all approvers to participate in this
 rotation. See
 [Be the PR Wrangler for a week](/docs/contribute/advanced#be-the-pr-wrangler-for-a-week)
 for more details.
@@ -232,16 +240,16 @@ for the current list of chairpersons.
 ## SIG Docs teams and automation
 
 Automation in SIG Docs relies on two different mechanisms for automation:
-Github groups and OWNERS files.
+GitHub groups and OWNERS files.
 
-### Github groups
+### GitHub groups
 
-The SIG Docs group defines two teams on Github:
+The SIG Docs group defines two teams on GitHub:
 
  - [@kubernetes/sig-docs-maintainers](https://github.com/orgs/kubernetes/teams/sig-docs-maintainers)
  - [@kubernetes/sig-docs-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-docs-pr-reviews)
 
-Each can be referenced with their `@name` in Github comments to communicate with
+Each can be referenced with their `@name` in GitHub comments to communicate with
 everyone in that group.
 
 These teams overlap, but do not exactly match, the groups used by the automation
@@ -251,9 +259,9 @@ the automation uses information from OWNERS files.
 ### OWNERS files and front-matter
 
 The Kubernetes project uses an automation tool called prow for automation
-related to Github issues and pull requests. The
+related to GitHub issues and pull requests. The
 [Kubernetes website repository](https://github.com/kubernetes/website) uses
-two [prow plugins](https://github.com/kubernetes/test-infra/blob/master/prow/plugins.yaml#L210):
+two [prow plugins](https://github.com/kubernetes/test-infra/tree/master/prow/plugins):
 
 - blunderbuss
 - approve
@@ -261,7 +269,7 @@ two [prow plugins](https://github.com/kubernetes/test-infra/blob/master/prow/plu
 These two plugins use the
 [OWNERS](https://github.com/kubernetes/website/blob/master/OWNERS) and
 [OWNERS_ALIASES](https://github.com/kubernetes/website/blob/master/OWNERS_ALIASES)
-files in the top level of the `kubernetes/website` Github repository to control
+files in the top level of the `kubernetes/website` GitHub repository to control
 how prow works within the repository.
 
 An OWNERS file contains a list of people who are SIG Docs reviewers and
@@ -271,7 +279,7 @@ descendents. For more information about OWNERS files in general, see
 [OWNERS](https://github.com/kubernetes/community/blob/master/contributors/guide/owners.md).
 
 In addition, an individual Markdown file can list reviewers and approvers in its
-front-matter, either by listing individual Github usernames or Github groups.
+front-matter, either by listing individual GitHub usernames or GitHub groups.
 
 The combination of OWNERS files and front-matter in Markdown files determines
 the advice PR owners get from automated systems about who to ask for technical
